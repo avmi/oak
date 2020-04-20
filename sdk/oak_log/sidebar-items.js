@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["DEFAULT_CONFIG_NAME","Default name for predefined node configuration that corresponds to a logging pseudo-Node."]],"fn":[["init","Initialize Node-wide logging via a channel to a logging pseudo-Node."],["init_default","Initialize Node-wide default logging."]]});
