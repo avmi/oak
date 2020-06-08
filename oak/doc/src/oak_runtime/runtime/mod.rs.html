@@ -1044,6 +1044,16 @@
 <span id="1044">1044</span>
 <span id="1045">1045</span>
 <span id="1046">1046</span>
+<span id="1047">1047</span>
+<span id="1048">1048</span>
+<span id="1049">1049</span>
+<span id="1050">1050</span>
+<span id="1051">1051</span>
+<span id="1052">1052</span>
+<span id="1053">1053</span>
+<span id="1054">1054</span>
+<span id="1055">1055</span>
+<span id="1056">1056</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="comment">//</span>
 <span class="comment">// Copyright 2020 The Project Oak Authors</span>
@@ -1122,8 +1132,8 @@
             .<span class="ident">send</span>(())
             <span class="comment">// Notification errors are discarded since not all of the Nodes save</span>
             <span class="comment">// and use the [`oneshot::Receiver`].</span>
-            .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="ident">error</span><span class="op">|</span> {
-                <span class="macro">warn</span><span class="macro">!</span>(<span class="string">&quot;Couldn&#39;t send notification to {}: {:?}&quot;</span>, <span class="ident">node_name</span>, <span class="ident">error</span>);
+            .<span class="ident">unwrap_or_else</span>(<span class="op">|</span>()<span class="op">|</span> {
+                <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;{} already droppped `notify_receiver`.&quot;</span>, <span class="ident">node_name</span>);
             });
         <span class="macro">debug</span><span class="macro">!</span>(<span class="string">&quot;join thread for node {}...&quot;</span>, <span class="self">self</span>.<span class="ident">node_name</span>);
         <span class="kw">let</span> <span class="ident">result</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">join_handle</span>.<span class="ident">join</span>();
@@ -1370,6 +1380,16 @@
             <span class="ident">ChannelHalfDirection</span>::<span class="ident">Read</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">OakStatus</span>::<span class="ident">ErrBadHandle</span>),
             <span class="ident">ChannelHalfDirection</span>::<span class="ident">Write</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">half</span>),
         }
+    }
+
+    <span class="doccomment">/// Return the direction of an ABI handle.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">abi_direction</span>(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        <span class="ident">node_id</span>: <span class="ident">NodeId</span>,
+        <span class="ident">handle</span>: <span class="ident">oak_abi</span>::<span class="ident">Handle</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ChannelHalfDirection</span>, <span class="ident">OakStatus</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">half</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">abi_to_half</span>(<span class="ident">node_id</span>, <span class="ident">handle</span>)<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(<span class="ident">half</span>.<span class="ident">direction</span>)
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gather_metrics</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">MetricFamily</span><span class="op">&gt;</span> {
