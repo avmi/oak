@@ -118,10 +118,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ec8ad6edb4840b78c5c3d88de606b22252d552b55f3a4699fbb10fc070ec3049"
 
 [[package]]
-name = "anyhow"
-version = "1.0.58"
+name = "android_system_properties"
+version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bb07d2053ccdbe10e2af2995a2f116c1330396493dc1269f6a91d0ae82e19704"
+checksum = "d7ed72e1635e121ca3e79420540282af22da58be50de153d36f81ddc6b83aa9e"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "anyhow"
+version = "1.0.60"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c794e162a5eff65c72ef524dfe393eb923c354e350bb78b9c7383df13f3bc142"
 
 [[package]]
 name = "anymap2"
@@ -488,9 +497,9 @@ checksum = "14c189c53d098945499cdfa7ecc63567cf3886b3332b312a5b4585d8d3a6a610"
 
 [[package]]
 name = "bytes"
-version = "1.1.0"
+version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c4872d67bab6358e59559027aa3b9157c53d9358c51423c17554809a8858e0f8"
+checksum = "ec8a7b6a70fde80372154c65702f00a0f56f3e1c36abbc6c440484be248856db"
 
 [[package]]
 name = "cache-padded"
@@ -663,13 +672,15 @@ dependencies = [
 
 [[package]]
 name = "chrono"
-version = "0.4.19"
+version = "0.4.21"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "670ad68c9088c2a963aaa298cb369688cf3f9465ce5e2d4ca10e6e0098a1ce73"
+checksum = "3f725f340c3854e3cb3ab736dc21f0cca183303acea3b3ffec30f141503ac8eb"
 dependencies = [
- "libc",
+ "iana-time-zone",
+ "js-sys",
  "num-integer",
  "num-traits 0.2.15",
+ "wasm-bindgen",
  "winapi",
 ]
 
@@ -1638,9 +1649,9 @@ dependencies = [
 
 [[package]]
 name = "futures-core"
-version = "0.3.21"
+version = "0.3.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0c09fd04b7e4073ac7156a9539b57a484a8ea920f79c7c675d05d289ab6110d3"
+checksum = "d2acedae88d38235936c3922476b10fced7b2b68136f5e3c03c2d5be348a1115"
 
 [[package]]
 name = "futures-executor"
@@ -2090,6 +2101,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "iana-time-zone"
+version = "0.1.42"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9512e544c25736b82aebbd2bf739a47c8a1c935dfcc3a6adcde10e35cd3cd468"
+dependencies = [
+ "android_system_properties",
+ "core-foundation",
+ "js-sys",
+ "wasm-bindgen",
+ "winapi",
+]
+
+[[package]]
 name = "idna"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2296,9 +2320,9 @@ checksum = "7fc7aa29613bd6a620df431842069224d8bc9011086b1db4c0e0cd47fa03ec9a"
 
 [[package]]
 name = "libm"
-version = "0.2.2"
+version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "33a33a362ce288760ec6a508b94caaec573ae7d3bbbd91b87aa0bad4456839db"
+checksum = "292a948cd991e376cf75541fe5b97a1081d713c618b4f1b9500f8844e49eb565"
 
 [[package]]
 name = "linked-hash-map"
@@ -2694,19 +2718,6 @@ dependencies = [
 
 [[package]]
 name = "nix"
-version = "0.23.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f866317acbd3a240710c63f065ffb1e4fd466259045ccb504130b7f668f35c6"
-dependencies = [
- "bitflags",
- "cc",
- "cfg-if",
- "libc",
- "memoffset",
-]
-
-[[package]]
-name = "nix"
 version = "0.24.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "195cdbc1741b8134346d515b3a56a1c94b0912758009cfd53f99ea0f57b065fc"
@@ -2817,7 +2828,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "578ede34cf02f8924ab9447f50c28075b4d3e5b269972345e7e0372b38c6cdcd"
 dependencies = [
  "autocfg",
- "libm 0.2.2",
+ "libm 0.2.5",
 ]
 
 [[package]]
@@ -2864,8 +2875,6 @@ dependencies = [
  "bitflags",
  "flatbuffers",
  "oak_idl",
- "oak_idl_gen_services",
- "oak_idl_gen_structs",
  "static_assertions",
 ]
 
@@ -2878,7 +2887,7 @@ dependencies = [
  "atomic_refcell",
  "getrandom 0.2.7",
  "lazy_static",
- "libm 0.2.2",
+ "libm 0.2.5",
  "linked_list_allocator",
  "log",
  "oak_baremetal_communication_channel",
@@ -2911,12 +2920,15 @@ dependencies = [
  "oak_baremetal_communication_channel",
  "oak_functions_loader",
  "oak_idl",
+ "oak_idl_gen_services",
+ "oak_idl_gen_structs",
  "oak_remote_attestation_sessions",
  "oak_utils",
  "prost 0.10.4",
  "serde",
  "tokio",
  "tonic",
+ "tonic-web",
  "vsock",
 ]
 
@@ -2925,18 +2937,23 @@ name = "oak_baremetal_runtime"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "async-trait",
  "flatbuffers",
  "hashbrown 0.12.2",
  "log",
- "oak_baremetal_communication_channel",
  "oak_functions_abi",
  "oak_functions_lookup",
  "oak_functions_wasm",
  "oak_functions_workload_logging",
  "oak_idl",
+ "oak_idl_gen_services",
+ "oak_idl_gen_structs",
  "oak_logger",
  "oak_remote_attestation",
+ "oak_remote_attestation_amd",
  "oak_remote_attestation_sessions",
+ "oak_remote_attestation_sessions_client",
+ "tokio",
 ]
 
 [[package]]
@@ -3096,6 +3113,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "oak_functions_loader_linux_native"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "clap 3.2.10",
+ "log",
+ "oak_baremetal_communication_channel",
+ "oak_baremetal_runtime",
+ "oak_remote_attestation",
+ "oak_remote_attestation_amd",
+]
+
+[[package]]
 name = "oak_functions_loader_linux_vsock"
 version = "0.1.0"
 dependencies = [
@@ -3103,7 +3133,6 @@ dependencies = [
  "assert_matches",
  "clap 3.2.10",
  "libc",
- "log",
  "oak_baremetal_communication_channel",
  "oak_baremetal_runtime",
  "oak_remote_attestation",
@@ -4373,7 +4402,6 @@ dependencies = [
 name = "rust-hypervisor-firmware-boot"
 version = "0.1.0"
 dependencies = [
- "bitflags",
  "log",
  "x86_64",
 ]
@@ -4460,9 +4488,9 @@ dependencies = [
 
 [[package]]
 name = "rustls-pemfile"
-version = "1.0.0"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e7522c9de787ff061458fe9a829dc790a3f5b22dc571694fc5883f448b94d9a9"
+checksum = "0864aeff53f8c05aa08d86e5ef839d3dfcf07aeba2db32f12db0ef716e87bd55"
 dependencies = [
  "base64",
 ]
@@ -4607,9 +4635,9 @@ dependencies = [
 
 [[package]]
 name = "serde"
-version = "1.0.140"
+version = "1.0.143"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fc855a42c7967b7c369eb5860f7164ef1f6f81c20c7cc1141f2a604e18723b03"
+checksum = "53e8e5d5b70924f74ff5c6d64d9a5acd91422117c60f48c4e07855238a254553"
 dependencies = [
  "serde_derive",
 ]
@@ -4626,9 +4654,9 @@ dependencies = [
 
 [[package]]
 name = "serde_derive"
-version = "1.0.140"
+version = "1.0.143"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f2122636b9fe3b81f1cb25099fcf2d3f542cdb1d45940d56c713158884a05da"
+checksum = "d3d8e8de557aee63c26b85b947f5e59b690d0454c753f3adeb5cd7835ab88391"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4685,7 +4713,6 @@ dependencies = [
 name = "sev_guest"
 version = "0.1.0"
 dependencies = [
- "anyhow",
  "bitflags",
  "static_assertions",
  "strum",
@@ -5267,9 +5294,9 @@ checksum = "cda74da7e1a664f795bb1f8a87ec406fb89a02522cf6e50620d016add6dbbf5c"
 
 [[package]]
 name = "tokio"
-version = "1.20.0"
+version = "1.20.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "57aec3cfa4c296db7255446efb4928a6be304b431a806216105542a67b6ca82e"
+checksum = "7a8325f63a7d4774dd041e363b2409ed1c5cbbd0f867795e661df066b2b0a581"
 dependencies = [
  "autocfg",
  "bytes",
@@ -5931,12 +5958,12 @@ checksum = "e3ca98349dda8a60ae74e04fd90c7fb4d6a4fbe01e6d3be095478aa0b76f6c0c"
 
 [[package]]
 name = "vsock"
-version = "0.2.6"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e32675ee2b3ce5df274c0ab52d19b28789632406277ca26bffee79a8e27dc133"
+checksum = "4c8e1df0bf1e1b28095c24564d1b90acae64ca69b097ed73896e342fa6649c57"
 dependencies = [
  "libc",
- "nix 0.23.1",
+ "nix 0.24.2",
 ]
 
 [[package]]
@@ -6175,7 +6202,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ca00c5147c319a8ec91ec1a0edbec31e566ce2c9cc93b3f9bb86a9efd0eb795d"
 dependencies = [
  "downcast-rs",
- "libm 0.2.2",
+ "libm 0.2.5",
  "memory_units",
  "num-rational 0.2.4",
  "num-traits 0.2.15",
