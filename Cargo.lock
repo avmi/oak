@@ -1341,9 +1341,9 @@ dependencies = [
 
 [[package]]
 name = "futures-core"
-version = "0.3.21"
+version = "0.3.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0c09fd04b7e4073ac7156a9539b57a484a8ea920f79c7c675d05d289ab6110d3"
+checksum = "4e5aa3de05362c3fb88de6531e6296e85cde7739cccad4b9dfeeb7f6ebce56bf"
 
 [[package]]
 name = "futures-executor"
@@ -1860,7 +1860,7 @@ dependencies = [
 name = "key_value_lookup"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.11.2",
+ "hashbrown 0.12.2",
  "http",
  "maplit",
  "oak_functions",
@@ -2673,7 +2673,7 @@ version = "0.1.0"
 dependencies = [
  "async-trait",
  "flatbuffers",
- "hashbrown 0.11.2",
+ "hashbrown 0.12.2",
  "oak_idl",
  "oak_idl_gen_services",
  "oak_idl_gen_structs",
@@ -4102,7 +4102,7 @@ dependencies = [
  "http",
  "hyper",
  "log",
- "nix 0.22.3",
+ "nix 0.24.2",
  "oak_functions_abi",
  "oak_functions_client",
  "oak_remote_attestation",
