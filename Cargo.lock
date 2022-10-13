@@ -1860,7 +1860,7 @@ dependencies = [
 name = "key_value_lookup"
 version = "0.1.0"
 dependencies = [
- "hashbrown 0.11.2",
+ "hashbrown 0.12.2",
  "http",
  "maplit",
  "oak_functions",
@@ -2673,7 +2673,7 @@ version = "0.1.0"
 dependencies = [
  "async-trait",
  "flatbuffers",
- "hashbrown 0.11.2",
+ "hashbrown 0.12.2",
  "oak_idl",
  "oak_idl_gen_services",
  "oak_idl_gen_structs",
@@ -3716,18 +3716,18 @@ dependencies = [
 
 [[package]]
 name = "serde"
-version = "1.0.143"
+version = "1.0.145"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "53e8e5d5b70924f74ff5c6d64d9a5acd91422117c60f48c4e07855238a254553"
+checksum = "728eb6351430bccb993660dfffc5a72f91ccc1295abaa8ce19b27ebe4f75568b"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde_derive"
-version = "1.0.143"
+version = "1.0.145"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d3d8e8de557aee63c26b85b947f5e59b690d0454c753f3adeb5cd7835ab88391"
+checksum = "81fa1584d3d1bcacd84c277a0dfe21f5b0f6accf4a23d04d4c6d61f1af522b4c"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -4102,7 +4102,7 @@ dependencies = [
  "http",
  "hyper",
  "log",
- "nix 0.22.3",
+ "nix 0.24.2",
  "oak_functions_abi",
  "oak_functions_client",
  "oak_remote_attestation",
