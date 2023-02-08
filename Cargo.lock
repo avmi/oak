@@ -236,9 +236,9 @@ dependencies = [
 
 [[package]]
 name = "async-trait"
-version = "0.1.59"
+version = "0.1.64"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "31e6e93155431f3931513b243d371981bb2770112b370c82745a1d19d2f99364"
+checksum = "1cd7fce9ba8c3c042128ce72d8b2ddbf3a05747efb67ea0313c635e10bda47a2"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -2031,7 +2031,7 @@ dependencies = [
 name = "oak_enclave_runtime_support"
 version = "0.1.0"
 dependencies = [
- "libm 0.1.4",
+ "libm 0.2.6",
  "linked_list_allocator",
  "log",
  "oak_restricted_kernel_api",
@@ -2330,7 +2330,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "log",
- "nix 0.22.3",
+ "nix 0.26.1",
  "simple_logger",
 ]
 
@@ -2371,12 +2371,12 @@ dependencies = [
  "bytes",
  "getrandom 0.2.8",
  "hkdf",
- "p256 0.9.0",
+ "p256 0.10.1",
  "quickcheck",
  "quickcheck_macros",
  "rand_core 0.6.4",
  "ring",
- "sha2 0.9.9",
+ "sha2 0.10.6",
  "signature",
  "x25519-dalek",
 ]
